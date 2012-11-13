@@ -1,0 +1,5 @@
+name: otterscience
+main: com.jeroensteenbeeke.bukkit.otterscience.Plugin
+version: 1.0-SNAPSHOT
+
+commands:
