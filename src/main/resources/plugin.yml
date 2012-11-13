@@ -1,5 +1,13 @@
 name: otterscience
-main: com.jeroensteenbeeke.bukkit.otterscience.Plugin
+main: com.jeroensteenbeeke.bukkit.otterscience.OtterSciencePlugin
 version: 1.0-SNAPSHOT
+load: STARTUP
 
 commands:
+  otter:
+    description: Otter Science commands
+    permission: is.otter
+permissions:
+  is.otter:
+    default: op
+    description: User is an otter
