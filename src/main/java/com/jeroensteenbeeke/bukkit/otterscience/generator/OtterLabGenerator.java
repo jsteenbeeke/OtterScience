@@ -10,6 +10,7 @@ import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 
 import com.google.common.collect.Lists;
+import com.jeroensteenbeeke.bukkit.otterscience.OtterSciencePlugin;
 
 public class OtterLabGenerator extends ChunkGenerator {
 	static enum Mode {
@@ -328,14 +329,16 @@ public class OtterLabGenerator extends ChunkGenerator {
 
 	public static final int FLOOR_HEIGHT = 51;
 
-	public OtterLabGenerator() {
+	private final OtterSciencePlugin plugin;
 
+	public OtterLabGenerator(OtterSciencePlugin plugin) {
+		this.plugin = plugin;
 	}
 
 	@Override
 	public List<BlockPopulator> getDefaultPopulators(World world) {
 
-		return Lists.<BlockPopulator> newArrayList(new LabPopulator());
+		return Lists.<BlockPopulator> newArrayList(new LabPopulator(plugin));
 	}
 
 	@Override

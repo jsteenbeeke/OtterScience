@@ -37,7 +37,7 @@ public class OtterSciencePlugin extends JSPlugin {
 	@Override
 	public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
 		if (LABNAME.equals(worldName)) {
-			return new OtterLabGenerator();
+			return new OtterLabGenerator(this);
 		}
 
 		return super.getDefaultWorldGenerator(worldName, id);
