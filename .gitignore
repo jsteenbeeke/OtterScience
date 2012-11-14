@@ -4,3 +4,4 @@
 .hgignore
 .hg
 target
+dependency-reduced-pom.xml
