@@ -16,14 +16,17 @@ public class OtterLabGenerator extends ChunkGenerator {
 		TOP_LEFT {
 			@Override
 			public byte getBlock(int xx, int yy, int zz) {
-				if (yy <= 50)
+				if (yy <= (FLOOR_HEIGHT - 1))
 					return id(Material.BEDROCK);
 
-				if (xx == 0 || zz == MAX)
-					return id(Material.BEDROCK);
+				if (yy <= MAX_WALL_HEIGHT) {
 
-				if (xx == 1 || zz == MAX - 1)
-					return id(Material.IRON_BLOCK);
+					if (xx == 0 || zz == MAX)
+						return id(Material.BEDROCK);
+
+					if (xx == 1 || zz == MAX - 1)
+						return id(Material.IRON_BLOCK);
+				}
 
 				return CENTER.getBlock(xx, yy, zz);
 			}
@@ -32,25 +35,31 @@ public class OtterLabGenerator extends ChunkGenerator {
 		TOP {
 			@Override
 			public byte getBlock(int xx, int yy, int zz) {
-				if (yy <= 50)
+				if (yy <= (FLOOR_HEIGHT - 1))
 					return id(Material.BEDROCK);
 
-				if (zz == MAX) {
-					if (in(yy, 52, 53) && in(xx, 7, 8))
-						return id(Material.AIR);
+				if (yy <= MAX_WALL_HEIGHT) {
+					if (zz == MAX) {
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(xx, 7, 8))
+							return id(Material.AIR);
 
-					if (in(yy, 51, 54) && in(xx, 6, 7, 8, 9))
-						return id(Material.GLOWSTONE);
+						if (in(yy, FLOOR_HEIGHT, FLOOR_HEIGHT + 3)
+								&& in(xx, 6, 7, 8, 9))
+							return id(Material.GLOWSTONE);
 
-					if (in(yy, 52, 53) && in(xx, 6, 9))
-						return id(Material.GLOWSTONE);
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(xx, 6, 9))
+							return id(Material.GLOWSTONE);
 
-					return id(Material.BEDROCK);
-				} else if (zz == MAX - 1) {
-					if (in(yy, 52, 53) && in(xx, 7, 8))
-						return id(Material.AIR);
+						return id(Material.BEDROCK);
+					} else if (zz == MAX - 1) {
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(xx, 7, 8))
+							return id(Material.AIR);
 
-					return id(Material.IRON_BLOCK);
+						return id(Material.IRON_BLOCK);
+					}
 				}
 
 				return CENTER.getBlock(xx, yy, zz);
@@ -63,11 +72,14 @@ public class OtterLabGenerator extends ChunkGenerator {
 				if (yy == 0 || yy == 1)
 					return id(Material.BEDROCK);
 
-				if (xx == MAX || zz == MAX)
-					return id(Material.BEDROCK);
+				if (yy <= MAX_WALL_HEIGHT) {
 
-				if (xx == MAX - 1 || zz == MAX - 1)
-					return id(Material.IRON_BLOCK);
+					if (xx == MAX || zz == MAX)
+						return id(Material.BEDROCK);
+
+					if (xx == MAX - 1 || zz == MAX - 1)
+						return id(Material.IRON_BLOCK);
+				}
 
 				return CENTER.getBlock(xx, yy, zz);
 			}
@@ -76,25 +88,32 @@ public class OtterLabGenerator extends ChunkGenerator {
 		LEFT {
 			@Override
 			public byte getBlock(int xx, int yy, int zz) {
-				if (yy <= 50)
+				if (yy <= (FLOOR_HEIGHT - 1))
 					return id(Material.BEDROCK);
 
-				if (xx == 0) {
-					if (in(yy, 52, 53) && in(zz, 7, 8))
-						return id(Material.AIR);
+				if (yy <= MAX_WALL_HEIGHT) {
 
-					if (in(yy, 51, 54) && in(zz, 6, 7, 8, 9))
-						return id(Material.GLOWSTONE);
+					if (xx == 0) {
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(zz, 7, 8))
+							return id(Material.AIR);
 
-					if (in(yy, 52, 53) && in(zz, 6, 9))
-						return id(Material.GLOWSTONE);
+						if (in(yy, FLOOR_HEIGHT, FLOOR_HEIGHT + 3)
+								&& in(zz, 6, 7, 8, 9))
+							return id(Material.GLOWSTONE);
 
-					return id(Material.BEDROCK);
-				} else if (xx == 1) {
-					if (in(yy, 52, 53) && in(zz, 7, 8))
-						return id(Material.AIR);
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(zz, 6, 9))
+							return id(Material.GLOWSTONE);
 
-					return id(Material.IRON_BLOCK);
+						return id(Material.BEDROCK);
+					} else if (xx == 1) {
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(zz, 7, 8))
+							return id(Material.AIR);
+
+						return id(Material.IRON_BLOCK);
+					}
 				}
 
 				return CENTER.getBlock(xx, yy, zz);
@@ -104,11 +123,15 @@ public class OtterLabGenerator extends ChunkGenerator {
 		CENTER {
 			@Override
 			public byte getBlock(int xx, int yy, int zz) {
-				if (yy <= 50)
+
+				if (yy <= (FLOOR_HEIGHT - 1))
 					return id(Material.BEDROCK);
 
-				if (yy == 51)
+				if (yy == FLOOR_HEIGHT)
 					return id(Material.IRON_BLOCK);
+
+				if (yy == GLASS_HEIGHT)
+					return id(Material.GLASS);
 
 				return 0;
 			}
@@ -117,25 +140,32 @@ public class OtterLabGenerator extends ChunkGenerator {
 		RIGHT {
 			@Override
 			public byte getBlock(int xx, int yy, int zz) {
-				if (yy <= 50)
+				if (yy <= (FLOOR_HEIGHT - 1))
 					return id(Material.BEDROCK);
 
-				if (xx == MAX) {
-					if (in(yy, 52, 53) && in(zz, 7, 8))
-						return id(Material.AIR);
+				if (yy <= MAX_WALL_HEIGHT) {
 
-					if (in(yy, 51, 54) && in(zz, 6, 7, 8, 9))
-						return id(Material.GLOWSTONE);
+					if (xx == MAX) {
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(zz, 7, 8))
+							return id(Material.AIR);
 
-					if (in(yy, 52, 53) && in(zz, 6, 9))
-						return id(Material.GLOWSTONE);
+						if (in(yy, FLOOR_HEIGHT, FLOOR_HEIGHT + 3)
+								&& in(zz, 6, 7, 8, 9))
+							return id(Material.GLOWSTONE);
 
-					return id(Material.BEDROCK);
-				} else if (xx == MAX - 1) {
-					if (in(yy, 52, 53) && in(zz, 7, 8))
-						return id(Material.AIR);
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(zz, 6, 9))
+							return id(Material.GLOWSTONE);
 
-					return id(Material.IRON_BLOCK);
+						return id(Material.BEDROCK);
+					} else if (xx == MAX - 1) {
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(zz, 7, 8))
+							return id(Material.AIR);
+
+						return id(Material.IRON_BLOCK);
+					}
 				}
 
 				return CENTER.getBlock(xx, yy, zz);
@@ -145,14 +175,16 @@ public class OtterLabGenerator extends ChunkGenerator {
 		BOTTOM_LEFT {
 			@Override
 			public byte getBlock(int xx, int yy, int zz) {
-				if (yy <= 50)
+				if (yy <= (FLOOR_HEIGHT - 1))
 					return id(Material.BEDROCK);
 
-				if (xx == 0 || zz == 0)
-					return id(Material.BEDROCK);
+				if (yy <= MAX_WALL_HEIGHT) {
+					if (xx == 0 || zz == 0)
+						return id(Material.BEDROCK);
 
-				if (xx == 1 || zz == 1)
-					return id(Material.IRON_BLOCK);
+					if (xx == 1 || zz == 1)
+						return id(Material.IRON_BLOCK);
+				}
 
 				return CENTER.getBlock(xx, yy, zz);
 			}
@@ -161,25 +193,32 @@ public class OtterLabGenerator extends ChunkGenerator {
 		BOTTOM {
 			@Override
 			public byte getBlock(int xx, int yy, int zz) {
-				if (yy <= 50)
+				if (yy <= (FLOOR_HEIGHT - 1))
 					return id(Material.BEDROCK);
 
-				if (zz == 0) {
-					if (in(yy, 52, 53) && in(xx, 7, 8))
-						return id(Material.AIR);
+				if (yy <= MAX_WALL_HEIGHT) {
 
-					if (in(yy, 51, 54) && in(xx, 6, 7, 8, 9))
-						return id(Material.GLOWSTONE);
+					if (zz == 0) {
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(xx, 7, 8))
+							return id(Material.AIR);
 
-					if (in(yy, 52, 53) && in(xx, 6, 9))
-						return id(Material.GLOWSTONE);
+						if (in(yy, FLOOR_HEIGHT, FLOOR_HEIGHT + 3)
+								&& in(xx, 6, 7, 8, 9))
+							return id(Material.GLOWSTONE);
 
-					return id(Material.BEDROCK);
-				} else if (zz == 1) {
-					if (in(yy, 52, 53) && in(xx, 7, 8))
-						return id(Material.AIR);
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(xx, 6, 9))
+							return id(Material.GLOWSTONE);
 
-					return id(Material.IRON_BLOCK);
+						return id(Material.BEDROCK);
+					} else if (zz == 1) {
+						if (in(yy, FLOOR_HEIGHT + 1, FLOOR_HEIGHT + 2)
+								&& in(xx, 7, 8))
+							return id(Material.AIR);
+
+						return id(Material.IRON_BLOCK);
+					}
 				}
 
 				return CENTER.getBlock(xx, yy, zz);
@@ -189,14 +228,17 @@ public class OtterLabGenerator extends ChunkGenerator {
 		BOTTOM_RIGHT {
 			@Override
 			public byte getBlock(int xx, int yy, int zz) {
-				if (yy <= 50)
+				if (yy <= (FLOOR_HEIGHT - 1))
 					return id(Material.BEDROCK);
 
-				if (xx == MAX || zz == 0)
-					return id(Material.BEDROCK);
+				if (yy <= MAX_WALL_HEIGHT) {
 
-				if (xx == MAX - 1 || zz == 1)
-					return id(Material.IRON_BLOCK);
+					if (xx == MAX || zz == 0)
+						return id(Material.BEDROCK);
+
+					if (xx == MAX - 1 || zz == 1)
+						return id(Material.IRON_BLOCK);
+				}
 
 				return CENTER.getBlock(xx, yy, zz);
 			}
@@ -279,6 +321,12 @@ public class OtterLabGenerator extends ChunkGenerator {
 	}
 
 	private static final int MAX = 15;
+
+	private static final int MAX_WALL_HEIGHT = 140;
+
+	public static final int GLASS_HEIGHT = 80;
+
+	public static final int FLOOR_HEIGHT = 51;
 
 	public OtterLabGenerator() {
 

@@ -9,6 +9,7 @@ import com.jeroensteenbeeke.bk.basics.commands.CommandMatcher;
 import com.jeroensteenbeeke.bk.basics.commands.ParameterIntegrityChecker;
 import com.jeroensteenbeeke.bk.basics.commands.PlayerAwareCommandHandler;
 import com.jeroensteenbeeke.bukkit.otterscience.OtterSciencePlugin;
+import com.jeroensteenbeeke.bukkit.otterscience.generator.OtterLabGenerator;
 
 public class OtterObserveHandler extends PlayerAwareCommandHandler {
 	private OtterSciencePlugin plugin;
@@ -31,7 +32,8 @@ public class OtterObserveHandler extends PlayerAwareCommandHandler {
 		if (player.getWorld().equals(lab)) {
 			Location l = player.getLocation();
 
-			player.teleport(new Location(l.getWorld(), l.getX(), 122, l.getZ()));
+			player.teleport(new Location(l.getWorld(), l.getX(),
+					OtterLabGenerator.GLASS_HEIGHT + 1, l.getZ()));
 		}
 
 	}
