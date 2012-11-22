@@ -1,6 +1,5 @@
 package com.jeroensteenbeeke.bukkit.otterscience.commands;
 
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
@@ -9,7 +8,6 @@ import com.jeroensteenbeeke.bk.basics.commands.CommandMatcher;
 import com.jeroensteenbeeke.bk.basics.commands.ParameterIntegrityChecker;
 import com.jeroensteenbeeke.bk.basics.commands.PlayerAwareCommandHandler;
 import com.jeroensteenbeeke.bukkit.otterscience.OtterSciencePlugin;
-import com.jeroensteenbeeke.bukkit.otterscience.generator.OtterLabGenerator;
 
 public class OtterToLabHandler extends PlayerAwareCommandHandler {
 	private OtterSciencePlugin plugin;
@@ -30,8 +28,7 @@ public class OtterToLabHandler extends PlayerAwareCommandHandler {
 		World lab = plugin.getServer().getWorld(OtterSciencePlugin.LABNAME);
 
 		if (!player.getWorld().equals(lab)) {
-			player.teleport(new Location(lab, 32,
-					OtterLabGenerator.FLOOR_HEIGHT + 1, 32));
+			player.teleport(lab.getSpawnLocation());
 		}
 
 	}
