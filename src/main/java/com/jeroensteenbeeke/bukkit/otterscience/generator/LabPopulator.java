@@ -34,14 +34,6 @@ public class LabPopulator extends BlockPopulator {
 
 			chunk.getBlock(10, y, 10).setType(Material.WORKBENCH);
 
-			chunk.getBlock(6, y, 6).setType(Material.BED_BLOCK);
-			chunk.getBlock(6, y, 7).setType(Material.BED_BLOCK);
-			chunk.getBlock(6, y, 7).setData((byte) 8);
-
-			chunk.getBlock(4, y, 6).setType(Material.BED_BLOCK);
-			chunk.getBlock(4, y, 7).setType(Material.BED_BLOCK);
-			chunk.getBlock(4, y, 7).setData((byte) 8);
-
 			Chest chest = (Chest) chunk.getBlock(8, y, 8).getState();
 
 			Inventory i = chest.getInventory();

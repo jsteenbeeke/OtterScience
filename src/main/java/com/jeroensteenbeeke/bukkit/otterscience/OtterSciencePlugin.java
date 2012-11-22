@@ -6,8 +6,10 @@ import org.bukkit.generator.ChunkGenerator;
 
 import com.jeroensteenbeeke.bk.basics.JSPlugin;
 import com.jeroensteenbeeke.bukkit.otterscience.commands.OtterExperimentHandler;
+import com.jeroensteenbeeke.bukkit.otterscience.commands.OtterJackpotHandler;
 import com.jeroensteenbeeke.bukkit.otterscience.commands.OtterObserveHandler;
 import com.jeroensteenbeeke.bukkit.otterscience.commands.OtterOutdoorHandler;
+import com.jeroensteenbeeke.bukkit.otterscience.commands.OtterSetSpawnHandler;
 import com.jeroensteenbeeke.bukkit.otterscience.commands.OtterToLabHandler;
 import com.jeroensteenbeeke.bukkit.otterscience.generator.NoonTask;
 import com.jeroensteenbeeke.bukkit.otterscience.generator.OtterLabGenerator;
@@ -28,10 +30,12 @@ public class OtterSciencePlugin extends JSPlugin {
 		getServer().getScheduler().scheduleSyncRepeatingTask(this,
 				new NoonTask(this), 20L, 600L);
 
+		addCommandHandler(new OtterJackpotHandler(this));
 		addCommandHandler(new OtterObserveHandler(this));
 		addCommandHandler(new OtterExperimentHandler(this));
 		addCommandHandler(new OtterToLabHandler(this));
 		addCommandHandler(new OtterOutdoorHandler(this));
+		addCommandHandler(new OtterSetSpawnHandler(this));
 	}
 
 	@Override
